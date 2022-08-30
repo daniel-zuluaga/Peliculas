@@ -9,7 +9,7 @@ class CardSwiper extends StatelessWidget {
 
 final size = MediaQuery.of(context).size;
 
-    return Container(
+    return SizedBox(
       width: double.infinity,
       height: size.height * 0.5,
       child: Swiper(
@@ -19,12 +19,12 @@ final size = MediaQuery.of(context).size;
         itemHeight: size.height * 0.5,
         itemBuilder: (_, int index) {
           return GestureDetector(
-            onTap: () => Navigator.pushNamed(context, "details", arguments: "movie-instance"),
+            onTap: () => Navigator.pushNamed(context, "details", arguments: "movie-Batman"),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: const FadeInImage(
                 placeholder: AssetImage("assets/no-image.jpg"), 
-                image: NetworkImage("https://via.placeholder.com/300x400"),
+                image: NetworkImage("https://i0.wp.com/imgs.hipertextual.com/wp-content/uploads/2022/01/batman-michael-keaton.jpg?fit=1200%2C945&quality=50&strip=all&ssl=1"),
                 fit: BoxFit.cover,
               ),
             ),

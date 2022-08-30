@@ -3,13 +3,13 @@ import 'package:peliculas/widgets/widgets.dart';
 
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  // const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Peliculas en cines"),
+        title: const Text("Peliculas en cines"),
         elevation: 0,
         actions: [
           IconButton(
