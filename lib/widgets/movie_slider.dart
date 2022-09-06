@@ -1,7 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:peliculas/models/models.dart';
+import 'package:peliculas/providers/movie_provider.dart';
+import 'package:peliculas/widgets/widgets.dart';
 
 class MovieSlider extends StatelessWidget {
-  const MovieSlider({super.key});
+
+
+  final List<Movie> movies;
+  final String? title;
+
+  const MovieSlider({
+    Key? key,
+    this.title, required this.movies
+    }): super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -11,17 +22,19 @@ class MovieSlider extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            child: Text("Populares", style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+          if(title != null)
+            Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Text( title!, style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
           ),
+
           const SizedBox(height: 5),
 
           Expanded(
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: 20,
-              itemBuilder: (_, int index) => const _MoviePoster(),
+              itemCount: movies.length,
+              itemBuilder: (_, int index) => _MoviePoster(movie: movies[index]),
             )
           ),
 
@@ -32,7 +45,11 @@ class MovieSlider extends StatelessWidget {
 }
 
 class _MoviePoster extends StatelessWidget {
-  const _MoviePoster({super.key});
+
+  final Movie movie;
+
+  const _MoviePoster({super.key, required this.movie});
+
 
   @override
   Widget build(BuildContext context) {
@@ -47,9 +64,9 @@ class _MoviePoster extends StatelessWidget {
             onTap: () => Navigator.pushNamed(context, "details", arguments: "movie-Batman2"),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
-              child: const FadeInImage(
-                placeholder: AssetImage("assets/no-image.jpg"), 
-                image: NetworkImage("https://upload.wikimedia.org/wikipedia/commons/1/1b/Batman_%28black_background%29.jpg"),
+              child: FadeInImage(
+                placeholder: const AssetImage("assets/no-image.jpg"), 
+                image: NetworkImage(movie.fullPosterImg),
                 width: 130,
                 height: 190,
                 fit: BoxFit.cover,
@@ -59,7 +76,7 @@ class _MoviePoster extends StatelessWidget {
 
           const SizedBox(height: 5),
 
-          const Text( "Spiderman: sin camino a casa ",
+          Text( movie.title,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             textAlign: TextAlign.center,
