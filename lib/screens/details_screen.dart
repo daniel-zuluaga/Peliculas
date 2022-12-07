@@ -52,7 +52,7 @@ class _CustomAppBar extends StatelessWidget {
           color: Colors.black12,
           child: Text(
             movie.title,
-            style: TextStyle(fontSize: 16),
+            style: TextStyle(fontSize: 18),
             textAlign: TextAlign.center,
             )
           ),
@@ -82,12 +82,15 @@ class _PosterAndTitle extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Row(
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: FadeInImage(
-              placeholder: AssetImage("assets/no-image.jpg"), 
-              image: NetworkImage(movie.fullPosterImg),
-              height: 150,            
+          Hero(
+            tag: movie.heroId!,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: FadeInImage(
+                placeholder: AssetImage("assets/no-image.jpg"), 
+                image: NetworkImage(movie.fullPosterImg),
+                height: 150,            
+              ),
             ),
           ),
 
@@ -128,7 +131,7 @@ class _Overview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
       child: Text(movie.overview,
         textAlign: TextAlign.justify,
         style: Theme.of(context).textTheme.subtitle1,

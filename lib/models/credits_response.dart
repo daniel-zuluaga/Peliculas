@@ -10,7 +10,7 @@ class CreditsResponse {
     CreditsResponse({
         required this.id,
         required this.cast,
-        required this.crew,
+        required this.crew,  
     });
 
     int id;
