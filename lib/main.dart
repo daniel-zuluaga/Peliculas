@@ -30,8 +30,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Peliculas',
-      initialRoute: "home",
+      initialRoute: "splash_home",
       routes: {
+        "splash_home": (_) => SplashHome(),
         "home": (_) =>  HomeScreen(),
         "details": (_) =>  DetailsScreen(),
       },
